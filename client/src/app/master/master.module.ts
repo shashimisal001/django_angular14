@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { CommonModule } from '@angular/common';
 import { MasterRoutingModule } from './master-routing.module';
 import { MasterComponent } from './master.component';
 import { RouterModule } from '@angular/router';
@@ -9,6 +10,7 @@ import { RouterModule } from '@angular/router';
     MasterComponent
   ],
   imports: [
+    CommonModule,
     BrowserModule,
     RouterModule,
     MasterRoutingModule
