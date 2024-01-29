@@ -1,0 +1,68 @@
+<div class="aboutus-section container px-4 py-5 px-lg-5">
+    <div>Already have an account? please <a [routerLink]="['/checkout/login']" [queryParams]="{ returnUrl: '/checkout/review' }">login</a></div>
+    <hr>
+    <div class="row">
+    <div class="col-md-8">
+    <form [formGroup]="checkoutForm" (ngSubmit)="onSubmit()">
+        <div class="mb-3 row">
+            <label for="name" class="col-sm-2 col-form-label">Name<span class="required">*</span></label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="name" formControlName="name">
+                <div class="invalid-feedback" *ngIf="isValid('name', 'required')">This field is required</div>
+                <div class="invalid-feedback" *ngIf="isValid('name', 'minlength')">Minimum 5 charectors required</div>
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label for="email" class="col-sm-2 col-form-label">Email<span class="required">*</span></label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="email" formControlName="email">
+                <div class="invalid-feedback" *ngIf="isValid('email', 'required')">This field is required</div>
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label for="password1" class="col-sm-2 col-form-label">Password<span class="required">*</span></label>
+            <div class="col-sm-10">
+                <input type="password" class="form-control" id="password1" formControlName="password1">
+                <div class="invalid-feedback" *ngIf="isValid('password1', 'required')">This field is required</div>
+                <div class="invalid-feedback" *ngIf="isValid('password1', 'minlength')">Minimum 8 charectors required</div>
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label for="password2" class="col-sm-2 col-form-label">Confirm Password<span class="required">*</span></label>
+            <div class="col-sm-10">
+                <input type="password" class="form-control" id="password2" formControlName="password2">
+                <div class="invalid-feedback" *ngIf="isValid('password2', 'required')">This field is required</div>
+                <div class="invalid-feedback" *ngIf="isValid('password2', 'minlength')">Minimum 8 charectors required</div>
+                <div class="invalid-feedback" *ngIf="isValid('', 'passwordmatch', 'form')">Both passwords are not matching</div>
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label for="mobileNumber" class="col-sm-2 col-form-label">Mobile number<span class="required">*</span></label>
+            <div class="col-sm-10">
+                <input type="text" id="mobileNumber" class="form-control" formControlName="mobileNumber">
+                <div class="invalid-feedback" *ngIf="isValid('mobileNumber', 'required')">This field is required</div>
+                <div class="invalid-feedback" *ngIf="isValid('mobileNumber', 'maxlength')">Numbers should not exceed 12 digits</div>
+                <div class="invalid-feedback" *ngIf="isValid('mobileNumber', 'minlength')">Numbers should be atleast 10 digits</div>
+                <div class="invalid-feedback" *ngIf="isValid('mobileNumber', 'pattern')">Should contain only digits</div>
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label for="address" class="col-sm-2 col-form-label">Address<span class="required">*</span></label>
+            <div class="col-sm-10">
+                <textarea class="form-control" rows="4" id="address" formControlName="address"></textarea>
+                <div class="invalid-feedback" *ngIf="isValid('address', 'required')">This field is required</div>
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label for="placeOrder" class="col-sm-2 col-form-label"></label>
+            <div class="col-sm-10">
+                <button class="btn btn-primary" [disabled]="checkoutForm.invalid">Continue</button>
+            </div>
+        </div>
+    </form>
+    </div>
+    <div class="col-md-4">
+        <cart-summary-component [showCheckoutButton]="showCheckoutButton"></cart-summary-component>
+    </div>
+    </div>
+</div>

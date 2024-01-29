@@ -1,0 +1,75 @@
+    <div class="container py-5">
+      <div class="row d-flex justify-content-center my-4">
+        <div class="col-md-8">
+          <div class="card mb-4">
+            <div class="card-header py-3">
+                <h5 class="mb-0">Cart - {{ cart.length }} items</h5>
+                <a (click)="cartService.clearCart()" style="cursor: pointer;">clear cart</a>
+            </div>
+            <div class="card-body">
+              <!-- Single item -->
+              <div class="row" *ngFor="let item of cart">
+                <div class="col-lg-3 col-md-12 mb-4 mb-lg-0">
+                  <!-- Image -->
+                  <div class="bg-image hover-overlay hover-zoom ripple rounded" data-mdb-ripple-color="light">
+                    <img src="http://localhost:8000{{item.product['image']}}"
+                      class="w-100" alt="{{ item.product['name'] }}" />
+                    <a href="#!">
+                      <div class="mask" style="background-color: rgba(251, 251, 251, 0.2)"></div>
+                    </a>
+                  </div>
+                  <!-- Image -->
+                </div>
+  
+                <div class="col-lg-5 col-md-6 mb-4 mb-lg-0">
+                  <!-- Data -->
+                  <p><strong>{{ item.product['name'] }}</strong></p>
+                  <p>Details: {{ item.product['description'] }}</p>
+                  <button type="button" class="btn btn-primary btn-sm me-1 mb-2" data-mdb-toggle="tooltip"
+                    title="Remove item" (click)="cartService.removeItem(item.productId)">
+                    <i class="bi-trash"></i>
+                  </button>
+                  <button type="button" class="btn btn-danger btn-sm mb-2" data-mdb-toggle="tooltip"
+                    title="Move to the wish list">
+                    <i class="bi-heart"></i>
+                  </button>
+                  <!-- Data -->
+                </div>
+  
+                <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
+                  <!-- Quantity -->
+                  <div class="d-flex mb-4" style="max-width: 300px">
+                    <div class="form-outline">
+                      <input min="0" name="qty" [(ngModel)]="item.qty" type="number" class="form-control" 
+                      (change)="cartService.addUpdateItem(item.product, item.qty)"/>
+                      <label class="form-label" for="form1">Quantity</label>
+                    </div>
+                  </div>
+                  <!-- Quantity -->
+  
+                  <!-- Price -->
+                  <p class="text-start text-md-center">
+                    <span class="text-muted text-decoration-line-through" *ngIf="item.product['discount']">
+                        INR {{ item.product['rate'] }}
+                    </span>
+                    <strong> INR {{ item.product['discounted_rate'] }}</strong>
+                  </p>
+                  <!-- Price -->
+                </div>
+                <hr class="my-4" />
+              </div>
+              <!-- Single item -->
+            </div>
+          </div>
+          <div class="card mb-4">
+            <div class="card-body">
+              <p><strong>Expected shipping delivery</strong></p>
+              <p class="mb-0">It will be usually within a week, but confirmation will be given by email after reviewing the order.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <cart-summary-component></cart-summary-component>
+        </div>
+      </div>
+    </div>

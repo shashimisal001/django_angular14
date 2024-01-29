@@ -13,7 +13,7 @@ export const routes: Routes = [
         } 
     },
     {
-        path: "single-product-detail",
+        path: "single-product-detail/:productId",
         component: SingleProductDetailComponent,
         data: {
             title: "Product Detail",

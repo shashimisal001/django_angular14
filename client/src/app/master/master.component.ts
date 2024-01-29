@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { filter, map, mergeMap } from 'rxjs';
+import { CartService } from '../common/services/cart.service';
+import { AuthService } from '../common/services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -9,7 +11,11 @@ import { filter, map, mergeMap } from 'rxjs';
 })
 export class MasterComponent {
   pageMeta: any = {};
-  constructor(private route: ActivatedRoute, private router: Router){}
+  cart: string | null = "[]"
+  constructor(private route: ActivatedRoute, 
+    private router: Router,
+    public cartService: CartService,
+    public authService: AuthService){}
 
   ngOnInit(): void {
     this.router.events.pipe(
@@ -27,5 +33,9 @@ export class MasterComponent {
       route = route.firstChild;
     }
     return route;
+  }
+
+  msgCame(args: boolean){
+    
   }
 }

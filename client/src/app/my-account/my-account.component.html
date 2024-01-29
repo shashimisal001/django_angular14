@@ -1,0 +1,45 @@
+<div class="py-5 px-4 container">
+    <section class="mb-4">
+        <h3>Orders</h3>
+        <hr>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Order Id</th>
+                    <th>Ordered On</th>
+                    <th>Customer</th>
+                    <th>Total</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let order of orders">
+                    <td>{{ order["id"] }}</td>
+                    <td>{{ order["created_date"]  }}</td>
+                    <td>{{ order["customer_data"]["name"] }}</td>
+                    <td>{{ order["total"] }}</td>
+                    <td>
+                        <a class="btn btn-sm btn-success" [routerLink]="['order-detail', order['id']]">
+                            Details
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <section class="mt-5" *ngIf="profile['customer_data']">
+        <h3>Profile</h3>
+        <hr>
+        <div class="card">
+            <div class="card-header">
+              {{ profile["customer_data"]["name"] }}
+            </div>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">{{ profile["email"] }}</li>
+              <li class="list-group-item">{{ profile["customer_data"]["mobile_number"] }}</li>
+              <li class="list-group-item">{{ profile["customer_data"]["created_date"] }}</li>
+            </ul>
+          </div>
+    </section>
+</div>

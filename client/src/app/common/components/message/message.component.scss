@@ -1,0 +1,27 @@
+.flash-message {
+    position: fixed;
+    top: 20;
+    right: 20;
+    padding: 10px !important;
+    min-width: 300px;
+    max-width: 500px;
+
+    div.msg {
+        display: block;
+        float: left;
+        width:90%;
+    }
+    a.close {
+        margin-left: 3%;
+        width: 7%;
+        cursor: pointer;
+        text-decoration: none;
+        color: inherit;
+    } 
+
+    .alert {
+        padding-right: 0px;
+        float: left;
+        width: 100%;
+    }
+}

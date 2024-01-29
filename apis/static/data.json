@@ -1,12 +1,44 @@
 [
-    {
-        "name": "Shashi",
-        "address": "Belgaum",
-        "phone": "9986755906"
-    },
-    {
-        "name": "Shivu",
-        "address": "Belgaum",
-        "phone": "9972929091"
-    }
+  {
+    "name": "Shashi",
+    "address": "Belgaum",
+    "age": 32,
+    "phone": "9986755906",
+    "salary": 20000
+  },
+  {
+    "name": "Shivu",
+    "address": "Belgaum",
+    "age": 33,
+    "phone": "9972929091",
+    "salary": 30000
+  },
+  {
+    "name": "Kiran",
+    "address": "Belgaum",
+    "age": 29,
+    "phone": "9535364520",
+    "salary": 25000
+  },
+  {
+    "name": "Rahul",
+    "address": "Belgaum",
+    "age": 25,
+    "phone": "9986755907",
+    "salary": 35000
+  },
+  {
+    "name": "Rakesh",
+    "address": "Belgaum",
+    "age": 24,
+    "phone": "9972929092",
+    "salary": 30000
+  },
+  {
+    "name": "Test",
+    "address": "Belgaum",
+    "age": 21,
+    "phone": "9972929093",
+    "salary": 19000
+  }
 ]

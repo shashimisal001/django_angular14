@@ -19,22 +19,29 @@
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
                         <li class="nav-item"><a class="nav-link active" aria-current="page" [routerLink]="['/']">Home</a></li>
                         <li class="nav-item"><a class="nav-link" [routerLink]="['/about-us']">About</a></li>
-                        <li class="nav-item"><a class="nav-link" [routerLink]="['/products']">All products page</a></li>
-                        <li class="nav-item"><a class="nav-link" [routerLink]="['/products/single-product-detail']">Product detail page</a></li>
+                        <li class="nav-item"><a class="nav-link" [routerLink]="['/products']">Our products</a></li>
+                        <li class="nav-item" *ngIf="authService.isUserLoggedIn()">
+                            <a class="nav-link" [routerLink]="['/my-account']">My account</a>
+                        </li>
                     </ul>
                     <form class="d-flex">
-                        <button class="btn btn-outline-dark" type="submit">
+                        <button class="btn btn-sm btn-outline-dark" [routerLink]="['/cart']">
                             <i class="bi-cart-fill me-1"></i>
                             Cart
-                            <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
+                            <span class="badge bg-dark text-white ms-1 rounded-pill">{{cartService.getCart().length}}</span> 
                         </button>
+                        <a class="btn btn-sm btn-outline-dark ms-2" (click)="authService.logoutUser()"
+                        *ngIf="authService.isUserLoggedIn()">
+                            <i class="bi bi-power me-1"></i>
+                            Logout
+                        </a>
                     </form>
                 </div>
             </div>
         </nav>
         <!-- Header-->
-        <header class="bg-dark py-5">
-            <div class="container px-4 px-lg-5 my-5">
+        <header class="bg-dark py-2">
+            <div class="container px-4 px-lg-5 my-2">
                 <div class="text-center text-white">
                     <h1 class="display-4 fw-bolder">{{pageMeta["title"]}}</h1>
                     <p class="lead fw-normal text-white-50 mb-0">{{ pageMeta["subtitle"] }}</p>
@@ -48,5 +55,14 @@
         <footer class="py-5 bg-dark">
             <div class="container"><p class="m-0 text-center text-white">@2023. eCommerce angular template. Developed by Shashikumar Misal.</p></div>
         </footer>
+        
+        <!-- Flash message -->
+        <message-component (msgCame)="msgCame($event)"></message-component>
     </body>
 </html>
+
+
+<ng-http-loader 
+[backgroundColor]="'#FFFFFF'"
+[backdropBackgroundColor]="'#000000'">
+</ng-http-loader>
