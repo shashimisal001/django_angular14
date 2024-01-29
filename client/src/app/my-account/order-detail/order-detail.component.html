@@ -1,0 +1,44 @@
+<div class="container py-5 px-4">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Si No</th>
+                <th>Product</th>
+                <th>Rate</th>
+                <th>Qty</th>
+                <th>Total rate</th>
+                <th>Discount</th>
+                <th>Total Discount</th>
+                <th>Total discounted rate</th>
+                <th>Gst</th>
+                <th>Total Gst</th>
+                <th>Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let product of products index as i">
+                <td>{{ i+1 }}</td>
+                <td>{{ product["name"] }}</td>
+                <td>{{ product["rate"] }}</td>
+                <td>{{ product["qty"] }}</td>
+                <td>{{ product["discount_data"]["total_rate"] }}</td>
+                <td>{{ product["discount"] }} | {{ product["discount_data"]["discount_type"] }}</td>
+                <td>{{ product["discount_data"]["total_discount"] }}</td>
+                <td>{{ product["discount_data"]["total_discounted_rate"] }}</td>
+                <td>{{ product["gst"] }} | {{ product["gst_data"]["gst_amt"] }}</td>
+                <td>{{ product["gst_data"]["total_gst_amt"] }}</td>
+                <td>{{ product["total_with_gst"] }}</td>
+            </tr>
+            <tr>
+                <th colspan="4">Total</th>
+                <th>{{ summary["total_rate"] }}</th>
+                <th></th>
+                <th>{{ summary["total_discount"] }}</th>
+                <th>{{ summary["total_discounted_rate"] }}</th>
+                <th></th>
+                <th>{{ summary["total_gst"] }}</th>
+                <th>{{ summary["total_with_gst"] }}</th>
+            </tr>
+        </tbody>
+    </table>
+</div>

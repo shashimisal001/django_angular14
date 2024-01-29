@@ -1,0 +1,8 @@
+<div class="flash-message">
+<div *ngFor="let msgObj of msgObjects; index as i">
+    <div class="alert alert-dismissible fade show alert-{{msgObj.msgType}}" *ngIf="msgObj.isMsgOn">
+        <a class="close" (click)="msgObj.isMsgOn=false">x</a>
+        <div [innerHtml]="msgObj.msg" class="msg"></div>
+    </div>
+</div>
+</div>
