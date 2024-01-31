@@ -4,6 +4,7 @@ import { CheckoutComponent } from "./checkout.component";
 import { LoginComponent } from "./login/login.component";
 import { ReviewComponent } from "./review/review.component";
 import { AuthRouteGuard } from "../common/routeguards/auth.routeguard";
+import { CartRouteGuard } from "../common/routeguards/cart.routeguard";
 
 export const routes = [
     { 
@@ -12,7 +13,8 @@ export const routes = [
         data: {
             title: "Checkout",
             subtitle: "Please do checkout"
-        }
+        },
+        canActivate: [CartRouteGuard]
     },
     {
         path: "login",
@@ -29,7 +31,7 @@ export const routes = [
             title: "Review & Order",
             subtitle: "Please review & place the order"
         },
-        canActivate: [AuthRouteGuard]
+        canActivate: [AuthRouteGuard, CartRouteGuard]
     }
 ]
 
