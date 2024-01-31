@@ -7,7 +7,7 @@ export const routes = [
         path: "", 
         component: IndexComponet,     
         data: {
-            title: "Shop in style",
+            title: false,
             subtitle: "With this shop hompeage template"
         }
     }

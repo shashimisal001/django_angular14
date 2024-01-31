@@ -13,9 +13,9 @@ class Helper:
         summary.update({"total_discounted_rate": sum(temp_list)})
 
         temp_list = [row["gst_data"]["total_gst_amt"] for row in data]
-        summary.update({"total_gst": sum(temp_list)})
+        summary.update({"total_gst": round(sum(temp_list), 2)})
 
         temp_list = [row["total_with_gst"] for row in data]
-        summary.update({"total_with_gst": sum(temp_list)})
+        summary.update({"total_with_gst": round(sum(temp_list, 2))})
 
         return summary

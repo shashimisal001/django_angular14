@@ -6,6 +6,10 @@ import { Component } from "@angular/core";
 })
 
 export class IndexComponet {
+    images: any = [
+        { path: "/assets/img/slides/image1.png" },
+        { path: "/assets/img/slides/image2.jpg" }
+    ]
     constructor(){
         
     }

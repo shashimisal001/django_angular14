@@ -1,6 +1,7 @@
 import { Component } from "@angular/core";
 import { CartService } from "../common/services/cart.service";
 import { HelperService } from "../common/services/helper.service";
+import { Router } from "@angular/router";
 
 @Component({
     selector: "cart",
@@ -11,7 +12,9 @@ import { HelperService } from "../common/services/helper.service";
 export class CartComponent {
     cart: any = [];
     cartSummary: any = {};
-    constructor(public cartService: CartService, private helperService: HelperService){}
+    constructor(public cartService: CartService, 
+        private helperService: HelperService,
+        private router: Router){}
 
     ngOnInit(){
         this.loadDependencyData();
@@ -20,6 +23,9 @@ export class CartComponent {
 
     loadDependencyData(){
         this.cart = this.cartService.getCart();
+        if(this.cart.length <= 0){
+            this.router.navigate(['/cart']);
+        }
     }
     
     listenToCartEvents(){

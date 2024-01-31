@@ -1,6 +1,7 @@
 import { RouterModule, Routes } from "@angular/router";
 import { CartComponent } from "./cart.component";
 import { NgModule } from "@angular/core";
+import { CartRouteGuard } from "../common/routeguards/cart.routeguard";
 
 export const routes: Routes = [
     { 
@@ -9,7 +10,8 @@ export const routes: Routes = [
         data: {
             title: "Your Cart",
             subtitle: "Review the items you have added"
-        } 
+        },
+        canActivate: [CartRouteGuard] 
     }
 ]
 
