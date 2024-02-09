@@ -59,6 +59,9 @@ export class CartService {
       netTotal += eachNetTotal;
       gst += (value.product["gst"]/100)*eachNetTotal;
     });
-    return { netTotal: netTotal, gst: parseFloat(String(gst)).toFixed(2), grandTotal: netTotal+gst }
+    return { netTotal: parseFloat(String(netTotal)).toFixed(2), 
+      gst: parseFloat(String(gst)).toFixed(2), 
+      grandTotal: parseFloat(String(netTotal+gst)).toFixed(2) 
+    }
   }
 }

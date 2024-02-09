@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.db import transaction
+from django.db import transaction, connection
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth import authenticate
 from django.contrib.auth.models import User
@@ -10,6 +10,7 @@ from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework_simplejwt.backends import TokenBackend
 from rest_framework.permissions import IsAuthenticated
 from rest_framework_simplejwt.authentication import JWTAuthentication
+
 
 from apis_app.models import Product, Order, OrderDetail
 from apis_app.serializers import ProductSerializer, CustomerSerializer, UserSerializer, OrderSerializer, OrderDetailSerializer
@@ -94,7 +95,7 @@ class ProtectedView(viewsets.ModelViewSet):
             user = self.read_user_token(request, direct_return=True)
             db_data1 = { 
                 "customer":  user["customer_data"]["id"],
-                "total": cartSummary["netTotal"]+cartSummary["netTotal"],
+                "total": float(cartSummary["netTotal"])+float(cartSummary["gst"]),
                 "status": 1
             }
             serializer1 = OrderSerializer(data=db_data1)
@@ -122,7 +123,6 @@ class ProtectedView(viewsets.ModelViewSet):
             return Response({ "status": "fail", "msg": str(e) })
         else:
             transaction.commit()
-        finally:
             return Response({ "status": "success", "msg": "Order created successfully" })
 
     @action(detail=True, methods=["get"])
@@ -138,7 +138,13 @@ class ProtectedView(viewsets.ModelViewSet):
         serializer = OrderDetailSerializer(ods, many=True)
         summary = Helper.get_order_summary(serializer.data)
         return Response({"status": "success", "data": { "products": serializer.data, "summary": summary } })
-
-
-
+    
+    @action(detail=True, methods=["get"])
+    def custom_order_detail(self, request, order_id):
+        cursor = connection.cursor()
+        cursor.execute("CALL loopData(16)")
+        column_names = [col[0] for col in cursor.description]
+        data_rows = cursor.fetchall()
+        data = [dict(zip(column_names, row)) for row in data_rows]
+        return Response({"status": "success", "data": data})
 
