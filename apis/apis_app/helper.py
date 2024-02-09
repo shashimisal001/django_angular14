@@ -16,6 +16,7 @@ class Helper:
         summary.update({"total_gst": round(sum(temp_list), 2)})
 
         temp_list = [row["total_with_gst"] for row in data]
-        summary.update({"total_with_gst": round(sum(temp_list, 2))})
+        summary.update({"total_with_gst": round(sum(temp_list), 2)})
 
         return summary
+        
