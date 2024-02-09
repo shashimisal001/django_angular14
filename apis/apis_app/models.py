@@ -96,7 +96,7 @@ class OrderDetail(models.Model):
     modified_date = models.DateTimeField(null=True)
     
     def __str__(self):
-        return self.name
+        return str(self.id)
     
 class Payment(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)

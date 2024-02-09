@@ -82,11 +82,12 @@ class OrderDetailSerializer(serializers.ModelSerializer):
         "discounted_rate": discounted_rate, "total_discounted_rate": discounted_rate*obj.qty }
     
     def get_gst_data(self, obj):
-        gst_amt = round((obj.rate/100)*obj.gst, 2)
+        discount_data = self.get_discount_data(obj)
+        gst_amt = round((discount_data["discounted_rate"]/100)*obj.gst, 2)
         gst_data = { "gst_amt": gst_amt, "total_gst_amt": gst_amt*obj.qty }
         return gst_data
 
     def get_total_with_gst(self, obj):
         total_discounted_rate = self.get_discount_data(obj)["total_discounted_rate"]
         total_gst = self.get_gst_data(obj)["total_gst_amt"]
-        return total_discounted_rate+total_gst
+        return round(total_discounted_rate+total_gst, 2)
